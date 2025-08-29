@@ -42,9 +42,9 @@ export type DAppItem = {
 	};
 	supportedNetworks?: string[];
 	conditions?: {
-		lang?: string[];
-		platform?: string[];
-		env?: string[];
+		lang?: Array<'ko' | 'en'>;
+		platform?: Array<'ios' | 'android' | 'web'>;
+		env?: Array<'local' | 'dev' | 'stage' | 'prod'>;
 	};
 };
 
