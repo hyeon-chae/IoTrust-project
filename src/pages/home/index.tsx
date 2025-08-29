@@ -1,8 +1,15 @@
+import Banner from '@/components/Banner';
+import usePresenter from './usePresenter';
+
 export default function Home() {
+	const { bannerList, isBannerListFetching, isBannerListError } =
+		usePresenter();
+
 	return (
-		<div>
-			<h1 className="text-2xl font-bold mb-4"></h1>
-			<div className="w-[960px] mx-auto py-20">home</div>
+		<div className="space-y-6 bg-white min-h-screen max-w-[640px] mx-auto">
+			<div className="">
+				<Banner data={bannerList} />
+			</div>
 		</div>
 	);
 }
