@@ -10,7 +10,7 @@ export function FavoriteList({ data }: FavoriteListProps) {
 	const { t } = useTranslation();
 
 	return (
-		<section className="w-full px-4">
+		<section className="w-full px-5">
 			{/* 섹션 타이틀_즐겨찾기*/}
 			<h2 className="text-base font-semibold mb-4">
 				{t('dapp_favorite_title')}
