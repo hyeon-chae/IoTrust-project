@@ -1,6 +1,5 @@
 import type { DAppItem } from '@/lib/types/contents';
-
-import { useTranslation } from 'react-i18next';
+import { useLang } from '@/contexts/LangContext';
 
 type DAppRawProps = {
 	item: DAppItem;
@@ -8,13 +7,10 @@ type DAppRawProps = {
 
 export function DAppRaw({ item }: DAppRawProps) {
 	const IMG_BASE_URL = import.meta.env.VITE_RESOURCE_URL;
-	const { t } = useTranslation();
+	const { lang } = useLang();
 
 	return (
-		<li
-			className="py-3 border-b"
-			onClick={() => window.open(item.url, '_blank')}
-		>
+		<li className="py-3 border-b">
 			<div className="flex items-center gap-3">
 				{/* 아이콘 */}
 				<div className="w-12 h-12 rounded-lg bg-white shadow-sm border flex items-center justify-center shrink-0">
@@ -31,7 +27,7 @@ export function DAppRaw({ item }: DAppRawProps) {
 						{item.title}
 					</p>
 					<p className="text-[12px] text-muted-foreground truncate">
-						{item.description.ko}
+						{lang === 'ko' ? item.description.ko : item.description.en}
 					</p>
 				</div>
 			</div>

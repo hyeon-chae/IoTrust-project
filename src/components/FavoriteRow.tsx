@@ -4,6 +4,7 @@ import { Button } from './ui/button';
 import { useFavoritesStore } from '@/stores/favoritesStore';
 import { useAlertDialog } from '@/components/providers/AlertDialogProvider';
 import { useTranslation } from 'react-i18next';
+import { useCallback } from 'react';
 
 type FavoriteRowProps = {
 	item: FavoriteItem;
@@ -17,7 +18,7 @@ export function FavoriteRow({ item }: FavoriteRowProps) {
 
 	const { showDialog, hideDialog } = useAlertDialog();
 
-	function handleRemove(id: string) {
+	const handleRemove = useCallback((id: string) => {
 		showDialog({
 			message: `${t('dapp_favorite_delete')}${t('dapp_favorite_title')}`,
 			discription: t('dapp_favorite_delete_confirm'),
@@ -42,7 +43,7 @@ export function FavoriteRow({ item }: FavoriteRowProps) {
 				</div>
 			),
 		});
-	}
+	}, []);
 
 	return (
 		<li className="py-3 border-b">
