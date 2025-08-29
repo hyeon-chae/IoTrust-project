@@ -13,11 +13,11 @@ i18n
 			en: { translation: en },
 			ko: { translation: ko },
 		},
-		lng: 'ko', // 기본 언어
-		fallbackLng: '.en', // 언어 없을 때 fallback
+		lng: 'ko',
+		fallbackLng: '.en',
 
 		interpolation: {
-			escapeValue: false, // react에선 XSS 걱정 안해도 됨
+			escapeValue: false,
 		},
 	});
 
