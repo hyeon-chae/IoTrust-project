@@ -30,3 +30,22 @@ export type FavoriteItem = {
 };
 
 export type FavoriteListResponse = FavoriteItem[];
+
+export type DAppItem = {
+	id: string;
+	title: string;
+	icon: string;
+	url: string;
+	description: {
+		ko: string;
+		en: string;
+	};
+	supportedNetworks?: string[];
+	conditions?: {
+		lang?: string[];
+		platform?: string[];
+		env?: string[];
+	};
+};
+
+export type DAppListResponse = DAppItem[];

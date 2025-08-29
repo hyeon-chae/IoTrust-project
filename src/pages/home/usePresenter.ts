@@ -1,7 +1,12 @@
-import { getBannerList, getFavoriteList } from '@/lib/api/contents';
+import {
+	getBannerList,
+	getFavoriteList,
+	getDAppList,
+} from '@/lib/api/contents';
 import type {
 	BannerListResponse,
 	FavoriteListResponse,
+	DAppListResponse,
 } from '@/lib/types/contents';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { useFavoritesStore } from '@/stores/favoritesStore';
@@ -34,7 +39,19 @@ export default function usePresenter() {
 		refetchOnWindowFocus: false,
 	});
 
+	const {
+		data: dappList,
+		isFetching: isDAppListFetching,
+		isError: isDAppListError,
+	} = useQuery<DAppListResponse, Error>({
+		queryKey: ['dappList'],
+		queryFn: getDAppList,
+		retry: 1,
+		refetchOnWindowFocus: false,
+	});
+
 	useEffect(() => {
+		// 즐겨찾기 데이터가 성공적으로 로드되었을 때 상태 업데이트
 		if (isFavoriteListSuccess && Array.isArray(favoriteList)) {
 			setFavoritesList(favoriteList);
 		}
@@ -47,5 +64,8 @@ export default function usePresenter() {
 		favoriteList: favorites || [],
 		isFavoriteListFetching,
 		isFavoriteListError,
+		dappList: dappList || [],
+		isDAppListFetching,
+		isDAppListError,
 	};
 }

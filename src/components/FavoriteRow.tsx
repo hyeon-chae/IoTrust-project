@@ -61,7 +61,10 @@ export function FavoriteRow({ item }: FavoriteRowProps) {
 					<p className="text-[15px] font-semibold leading-tight truncate">
 						{item.title}
 					</p>
-					<p className="text-[12px] text-muted-foreground truncate">
+					<p
+						className="text-[12px] text-muted-foreground truncate"
+						onClick={() => window.open(item.url, '_blank')}
+					>
 						{item.url}
 					</p>
 				</div>

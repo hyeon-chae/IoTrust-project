@@ -16,7 +16,7 @@ export default function Banner({ data }: BannerProps) {
 	const { lang } = useLang();
 
 	return (
-		<div className="w-full overflow-hidden mb-6">
+		<div className="w-full overflow-hidden">
 			<Swiper
 				modules={[Autoplay, Pagination]}
 				spaceBetween={0}
