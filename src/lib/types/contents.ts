@@ -20,3 +20,13 @@ export type BannerData = {
 };
 
 export type BannerListResponse = BannerData[];
+
+export type FavoriteItem = {
+	id: string;
+	title: string;
+	description: string;
+	url: string;
+	icon: string;
+};
+
+export type FavoriteListResponse = FavoriteItem[];
