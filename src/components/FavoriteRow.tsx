@@ -1,17 +1,51 @@
 import { Bookmark } from 'lucide-react';
 import type { FavoriteItem } from '@/lib/types/contents';
 import { Button } from './ui/button';
+import { useFavoritesStore } from '@/stores/favoritesStore';
+import { useAlertDialog } from '@/components/providers/AlertDialogProvider';
+import { useTranslation } from 'react-i18next';
 
 type FavoriteRowProps = {
 	item: FavoriteItem;
-	// onRemove?: (id: string) => void;
 };
 
 export function FavoriteRow({ item }: FavoriteRowProps) {
 	const IMG_BASE_URL = import.meta.env.VITE_RESOURCE_URL;
+	const { t } = useTranslation();
+
+	const { removeFavorites } = useFavoritesStore();
+
+	const { showDialog, hideDialog } = useAlertDialog();
+
+	function handleRemove(id: string) {
+		showDialog({
+			message: `${t('dapp_favorite_delete')}${t('dapp_favorite_title')}`,
+			discription: t('dapp_favorite_delete_confirm'),
+			actions: (
+				<div className="flex gap-2 pt-4">
+					<Button
+						variant="outline"
+						className="w-full"
+						onClick={() => hideDialog()}
+					>
+						{t('button_cancel')}
+					</Button>
+					<Button
+						className="w-full bg-primary text-white"
+						onClick={() => {
+							removeFavorites(id);
+							hideDialog();
+						}}
+					>
+						{t('button_confirm')}
+					</Button>
+				</div>
+			),
+		});
+	}
 
 	return (
-		<li className="py-3">
+		<li className="py-3 border-b">
 			<div className="flex items-center gap-3">
 				{/* 아이콘 */}
 				<div className="w-12 h-12 rounded-lg bg-white shadow-sm border flex items-center justify-center shrink-0">
@@ -40,9 +74,9 @@ export function FavoriteRow({ item }: FavoriteRowProps) {
 						variant="ghost"
 						size="sm"
 						className="h-6 px-0 text-[11px] text-gray-400 bg-white"
-						// onClick={() => onRemove?.(item.id)}
+						onClick={() => handleRemove(item.id)}
 					>
-						삭제
+						{t('dapp_favorite_delete')}
 					</Button>
 				</div>
 			</div>

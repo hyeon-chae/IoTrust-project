@@ -9,6 +9,7 @@ interface FavoritesState {
 	toggleFavorites: (item: FavoriteItem) => void;
 	isFavoritesed: (id: string) => boolean;
 	clearAll: () => void;
+	setFavoritesList: (list: FavoriteItem[]) => void;
 }
 
 export const useFavoritesStore = create<FavoritesState>()(
@@ -31,6 +32,7 @@ export const useFavoritesStore = create<FavoritesState>()(
 			},
 			isFavoritesed: (id) => get().favorites.some((b) => b.id === id),
 			clearAll: () => set({ favorites: [] }),
+			setFavoritesList: (list) => set({ favorites: list }),
 		}),
 		{
 			name: 'Favorites-storage',

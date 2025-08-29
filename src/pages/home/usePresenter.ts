@@ -4,9 +4,13 @@ import type {
 	FavoriteListResponse,
 } from '@/lib/types/contents';
 import { useQuery, useMutation } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+import { useFavoritesStore } from '@/stores/favoritesStore';
+import { useEffect } from 'react';
 
 export default function usePresenter() {
+	const setFavoritesList = useFavoritesStore((state) => state.setFavoritesList);
+	const { favorites } = useFavoritesStore();
+
 	const {
 		data: bannerList,
 		isFetching: isBannerListFetching,
@@ -22,6 +26,7 @@ export default function usePresenter() {
 		data: favoriteList,
 		isFetching: isFavoriteListFetching,
 		isError: isFavoriteListError,
+		isSuccess: isFavoriteListSuccess,
 	} = useQuery<FavoriteListResponse, Error>({
 		queryKey: ['favoriteList'],
 		queryFn: getFavoriteList,
@@ -29,11 +34,17 @@ export default function usePresenter() {
 		refetchOnWindowFocus: false,
 	});
 
+	useEffect(() => {
+		if (isFavoriteListSuccess && Array.isArray(favoriteList)) {
+			setFavoritesList(favoriteList);
+		}
+	}, [isFavoriteListSuccess]);
+
 	return {
 		bannerList: bannerList || [],
 		isBannerListFetching,
 		isBannerListError,
-		favoriteList: favoriteList || [],
+		favoriteList: favorites || [],
 		isFavoriteListFetching,
 		isFavoriteListError,
 	};
