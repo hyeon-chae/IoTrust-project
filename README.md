@@ -34,26 +34,26 @@ npm run dev
 
 ## 📂 주요 코드 설명
 
-# DApp 리스트 필터링 로직 구현
+### DApp 리스트 필터링 로직 구현
 
 - 각 DApp 아이템에 설정된 conditions 조건(lang, platform, env)에 따라 리스트 필터링
 - 조건이 없거나 비어 있으면 전체 표시
 
-# React Query를 통한 데이터 Fetching
+### React Query를 통한 데이터 Fetching
 
 - getDAppList, getFavoriteList, getBannerList API 연동
 
-# 컴포넌트 구조화 및 역할 분리
+### 컴포넌트 구조화 및 역할 분리
 
 - MVP 패턴을 사용하여 로직과 UI 분리
 - 재사용 가능한 훅과 상태 관리 로직 정리
 - shadcn으로 atomic ui 활용
 
-# 다국어(i18n) 지원
+### 다국어(i18n) 지원
 
 - localization에 따른 다국어 처리
 
-# Zustand를 통한 글로벌 상태 관리
+### Zustand를 통한 글로벌 상태 관리
 
 - 즐겨찾기(FavoriteList) 상태를 zustand store로 관리
 
