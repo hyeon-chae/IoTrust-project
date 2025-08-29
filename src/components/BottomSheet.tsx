@@ -43,7 +43,7 @@ export default function BottomSheet({
            flex flex-col
         "
 			>
-				<div className="p-6 overflow-y-auto">
+				<div className="px-6 pt-6 overflow-y-auto">
 					<SheetHeader className="items-start text-left gap-2">
 						{/* 아이콘 + 타이틀 */}
 						<div className="flex items-center gap-3 pt-12 pb-4">
@@ -55,6 +55,9 @@ export default function BottomSheet({
 								{title}
 							</SheetTitle>
 						</div>
+
+						<p className="text-sm text-muted-foreground mb-2">{url}</p>
+
 						<p className="text-lg font-semibold">
 							{t('bottom_sheet_go_description')}
 						</p>
