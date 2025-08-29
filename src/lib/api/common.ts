@@ -9,7 +9,6 @@ interface ApiFetchOptions {
 }
 
 const BASE_URL = import.meta.env.VITE_API_URL;
-const KAKAO_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY;
 
 export async function apiFetch<T>(options: ApiFetchOptions): Promise<T> {
 	const { path, method = 'GET', params, body, headers } = options;
@@ -23,8 +22,14 @@ export async function apiFetch<T>(options: ApiFetchOptions): Promise<T> {
 
 	const url = `${BASE_URL}${path}${queryString}`;
 
+	// ✅ 토큰 불러오기
+	let token: string | null = null;
+	if (typeof window !== 'undefined') {
+		token = localStorage.getItem('token');
+	}
+
 	const customHeaders: Record<string, string> = {
-		Authorization: `KakaoAK ${KAKAO_API_KEY}`,
+		...(token ? { Authorization: `Bearer ${token}` } : {}), // ✅ 토큰 없으면 아예 헤더 제거
 		...(headers as Record<string, string>),
 	};
 
@@ -35,6 +40,7 @@ export async function apiFetch<T>(options: ApiFetchOptions): Promise<T> {
 	const res = await fetch(url, {
 		method,
 		// credentials: 'include',
+		credentials: 'omit',
 		headers: customHeaders,
 		body: body ? JSON.stringify(body) : undefined,
 	});

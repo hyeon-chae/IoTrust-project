@@ -143,3 +143,10 @@ input::placeholder {
 		@apply bg-background text-foreground;
 	}
 }
+
+.swiper-pagination-fraction {
+	text-align: right !important;
+	padding-right: 16px;
+	font-size: 14px;
+	color: #fff !important;
+}
