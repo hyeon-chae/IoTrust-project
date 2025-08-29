@@ -5,5 +5,7 @@
   "dapp_list_title": "목록",
   "go_to_dapp": "서비스 바로가기",
   "button_cancel": "취소",
-  "button_confirm": "확인"
+  "button_confirm": "확인",
+  "bottom_sheet_go_description": "설명",
+  "bottom_sheet_go": "서비스 바로가기"
 }

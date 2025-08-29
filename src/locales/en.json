@@ -5,5 +5,7 @@
   "dapp_list_title": "List",
   "go_to_dapp": "Go",
   "button_cancel": "Cancel",
-  "button_confirm": "Confirm"
+  "button_confirm": "Confirm",
+  "bottom_sheet_go_description": "Description",
+  "bottom_sheet_go": "Go"
 }
